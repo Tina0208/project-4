@@ -88,6 +88,7 @@ nav h1 {
     opacity: 1;
     background-color: transparent;
     color: black;
+    background-color: white;
 }
 
 .menu li.menu-add a {
@@ -204,6 +205,7 @@ nav h1 {
     right: 0;
     background-color: white;
     padding: 0 2%;
+    z-index: 2;
 }
 
 .ham-clicked-area header {
@@ -562,7 +564,7 @@ iframe {
 
 .arrow-right {
     right: 0%;
-    z-index: 99999999;
+    z-index: 99;
 }
 
 .book-card {

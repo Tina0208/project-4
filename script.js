@@ -20,6 +20,7 @@ $(".language").click(function () {
 //hamburger動畫、動態設定
 $(".hamburder").on("click", function () {
     $('.nav-right-area').toggleClass("noOpacity");
+    $('.arrow-right').toggleClass("noOpacity");
     $('.ham-clicked-area').toggleClass('display-none');
     $(this).children().eq(0).toggleClass("noOpacity");
     $(this).children().eq(2).toggleClass("noOpacity");
@@ -104,26 +105,25 @@ let prevScrollY = 0;
 const navbar = document.querySelector('nav');
 const toggleMenu = document.querySelectorAll('.toggle-menu');
 const navLogo = document.querySelector('.nav-left-area img');
+const body = document.querySelector('body');
 
 function moveHandler() {
     //下滑移動navbar
     if (window.scrollY > 1) {
         console.log('123');
-        document.querySelector('nav').style =  "padding-top: 10px;background-color: white;";
+        document.querySelector('nav').style =  "padding-top: 10px;";
         toggleMenu.forEach((e)=>{
             e.classList.remove('menu-remove');
             e.classList.add('menu-add');
         })
         navLogo.setAttribute('src','./imgs/navbar-logo-red.png')
-        navbar.style.boxShadow = "0 3px 10px #ccc";
     }else {
-        document.querySelector('nav').style =  "padding-top: 40px;background-color: 'rgba(255, 255, 255, 0.017);';";
+        document.querySelector('nav').style =  "padding-top: 40px';";
         toggleMenu.forEach((e)=>{
             e.classList.remove('menu-add');
             e.classList.add('menu-remove');
         })
         navLogo.setAttribute('src','./imgs/navbar-logo.png')
-        navbar.style.boxShadow = "none";
     }
 
     //客房消息滾輪捲動動畫
