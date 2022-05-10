@@ -1,0 +1,978 @@
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+img {
+    width: 100%;
+    transition: 2s;
+}
+
+.outer-container {
+    height: fit-content;
+    width: 100%;
+    overflow: hidden;
+}
+
+.inner-container {
+    padding: 0 5%;
+    max-width: 1440px;
+    margin: 0 auto;
+    /* border: 6px solid rgb(7, 44, 255); */
+}
+
+/*navbar樣式開始*/
+nav {
+    /* height: 90px; */
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 40px 6% 10px 1%;
+    /* border: 1px solid red; */
+    z-index: 9;
+    transition: .5s;
+}
+
+nav h1 {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 180px;
+    height: 50px;
+    /* border: 1px solid red; */
+}
+
+.nav-right-area {
+    width: 80%;
+    display: flex;
+    font-size: .8rem;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+}
+
+.menu {
+    /* border: 1px solid blue; */
+    display: flex;
+    width: 100%;
+}
+
+.menu li {
+    /* width: 80px; */
+    padding: 10px 15px;
+    margin-right: 5px;
+    flex-grow: 1;
+    background-color: #bca480;
+    font-size: 0.8rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu a {
+    color: white;
+}
+
+.menu li.menu-remove {
+    opacity: 0;
+}
+
+.menu li.menu-add {
+    opacity: 1;
+    background-color: transparent;
+    color: black;
+}
+
+.menu li.menu-add a {
+    color: black;
+}
+
+.language {
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: #bca480;
+    position: relative;
+}
+
+.language-dropdown {
+    position: absolute;
+    top: 60px;
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+    /* border: 1px solid green; */
+    box-shadow: 1px 1px 5px rgb(177, 177, 177);
+    display: none;
+}
+
+.language-dropdown li {
+    width: 100%;
+    /* border: 1px solid red; */
+    text-align: center;
+    padding: 8% 0;
+    font-size: .8rem;
+    color: black;
+    border-bottom: 1px solid #eee;
+}
+
+.language-dropdown a {
+    color: black;
+}
+
+
+.hamburder {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    height: calc(100% - 40px);
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    z-index: 9999999;
+    /* border: 1px solid green; */
+}
+
+.hamburder div {
+    width: 50px;
+    height: 2px;
+    background-color: black;
+    position: relative;
+    /* transform: rotate(45deg); */
+    transition: all .5s;
+    z-index: 9999999;
+}
+
+.hamburder div:nth-child(2)::after {
+    content: "";
+    width: 50px;
+    height: 2px;
+    position: absolute;
+    background-color: black;
+    top: 0;
+    /* transform: rotate(-90deg); */
+}
+
+.hamburder div:nth-child(2).change::after {
+    content: "";
+    width: 50px;
+    height: 2px;
+    animation: doRotate01 1s forwards;
+    position: absolute;
+    top: 0;
+    /* transform: rotate(-90deg); */
+}
+
+.hamburder div:last-child {
+    width: 25px;
+    transition: all .5s;
+}
+
+.hamburder:hover div:last-child {
+    width: 50px;
+}
+
+/*navbar hamberger點擊後呈現 開始 */
+.ham-clicked-area.display-none {
+    opacity: 0;
+    transition: all 1s;
+    transform: translateX(40%);
+}
+
+
+.ham-clicked-area {
+    transition: all 1s;
+    opacity: 1;
+    transform: translateX(0%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: white;
+    padding: 0 2%;
+}
+
+.ham-clicked-area header {
+    padding-top: calc(40px + 3%);
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: all .5s;
+}
+
+.ham-clicked-area header a:first-child {
+    background-color: #bca480;
+    padding: 3% 8%;
+    margin-right: 3%;
+    color: white;
+    font-size: .8rem;
+}
+
+.ham-clicked-area header a:last-child {
+    padding: 2% 10%;
+    color: #bca480;
+    position: relative;
+}
+
+.ham-clicked-area header a:last-child::after {
+    content: "";
+    width: 1px;
+    height: 15px;
+    background-color: #bca480;
+    position: absolute;
+    right: 0;
+}
+
+.ham-clicked-area h3 {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: .5s;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    font-weight: bold;
+    /* border: 1px solid red; */
+    margin-bottom: 5%;
+    padding-bottom: 5%;
+    position: relative;
+}
+
+.ham-clicked-area h3::after {
+    content: "";
+    width: 50px;
+    height: 1px;
+    background-color: #bca480;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.ham-clicked-area .main {
+    position: relative;
+}
+
+.ham-clicked-area ul {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: .5s;
+    /* border: 1px solid red; */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ham-clicked-area ul li {
+    width: 25%;
+    line-height: 3rem;
+}
+
+.ham-clicked-area a {
+    color: #5c5c5c;
+    transition: .5s;
+}
+
+.ham-clicked-area a:hover {
+    color: #bca480;
+}
+
+.ham-clicked-area span {
+    margin-left: 25%;
+}
+
+.ham-clicked-area footer {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: .5s;
+    border-top: 1px solid #818181;
+    padding: 3% 0 2% 0;
+    color: #818181;
+}
+
+.ham-clicked-area footer p {
+    line-height: 1.3rem;
+    font-size: .8rem;
+}
+
+.ham-clicked-area footer p:last-child {
+    color: #bebebe;
+}
+
+.ham-clicked-area .main {
+    margin-top: 25%;
+    /* border: 1px solid blue; */
+    flex-grow: 1;
+}
+
+.icon-area {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: .5s;
+    width: 30%;
+    /* border: 1px solid red; */
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 5%;
+    margin-bottom: 3%;
+    font-size: 20px;
+}
+
+.ham-clicked-area header.active,.ham-clicked-area h3.active,.ham-clicked-area ul.active,.ham-clicked-area .icon-area.active, .ham-clicked-area footer.active {
+    opacity: 1;
+    transform: translate(0,0);
+}
+
+
+/*navbar hamberger點擊後呈現 結束 */
+
+
+
+
+
+
+
+
+/*navbar樣式結束*/
+.first-view {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.video-container {
+    width: 90%;
+    /* border: 1px solid red; */
+}
+
+.first-view h2 {
+    position: absolute;
+    font-size: 5rem;
+    color: white;
+    top: 50%;
+    margin-left: 10%;
+    
+}
+
+iframe {
+    margin-top: -80px;
+    margin-left: -80px;
+    width: 120%;
+    height: calc(100vh + 140px);
+}
+
+.first-view>img {
+    width: 70%;
+    position: absolute;
+    /* border: 1px solid blue; */
+    top: 0;
+    right: 0;
+    z-index: 999;
+    object-fit: cover;
+}
+
+.addanimation {
+    animation: doRotate 1s forwards;
+}
+
+.noOpacity {
+    opacity: 0;
+}
+
+.gif-area {
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    /* border: 1px solid red; */
+}
+
+.gif-area>div {
+    height: 100%;
+    display: inline;
+}
+
+.gif-area img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.go-left {
+    position: absolute;
+    right: 0;
+    /* border: 3px solid blue; */
+}
+
+.go-right {
+    position: absolute;
+    left: -50px;
+}
+
+.no-go {
+    position: absolute;
+    left: 30%;
+}
+
+.go-left-one {
+    animation: walkToLeft 25s infinite;
+}
+
+.go-left-two {
+    animation: walkToLeft 30s 3s infinite;
+}
+
+.go-left-three {
+    animation: walkToLeft 40s 10s infinite;
+}
+
+.go-left-four {
+    animation: walkToLeft 45s 25s infinite;
+}
+
+.go-right-one {
+    animation: walkToRight 25s  infinite;
+}
+
+.go-right-two {
+    animation: walkToRight 40s 3s infinite;
+}
+
+.go-right-three {
+    animation: walkToRight 30s 7s infinite;
+}
+
+/* 最新消息樣式開始 */
+.information {
+    padding: 8% 0;
+}
+
+.book {
+    display: flex;
+    margin-bottom: 10%;
+}
+
+.title {
+    width: 60%;
+    margin-right: 5%;
+}
+
+.title h2 {
+    font-size: 2rem;
+    line-height: 2.8rem;
+    margin-bottom: 2%;
+}
+
+.title p {
+    line-height: 1.8rem;
+}
+
+.information .book-btn {
+    width: 150px;   
+    height: 150px;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    line-height: 150px;
+    position: relative;
+}
+
+.information .book-btn:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: black;
+    z-index: -1;
+    animation: flicker .5s infinite;
+}
+
+.information .book-btn:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: black;
+    z-index: -1;
+    animation: flicker02 .5s .8s infinite;
+}
+
+
+.book-slider-wrap {
+    position: relative;
+}
+
+.horizon {
+    width: 110%;
+    height: 1px;
+    background-color: #ccc;
+    position: absolute;
+    top: 50%;
+    left: -5%;
+    z-index: -1;
+}
+
+.book-slider {
+    position: relative;
+    overflow: hidden;
+    /* border: 1px solid red; */
+}
+
+.book-card-wrap {
+    display: flex;
+    justify-content: space-around;
+    width: 400%;
+    transition: 1s;
+    transform: translateX(-25%);
+}
+
+.arrow {
+    position: absolute;
+    top: calc(50% - 1rem + 1px);
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.arrow-left {
+    left: -0%;
+    z-index: 9999999;
+}
+
+.arrow-right {
+    right: 0%;
+    z-index: 99999999;
+}
+
+.book-card {
+    width: 5%;
+
+    /* border: 1px solid red; */
+    position: relative;
+    padding-bottom: 140px;
+    box-shadow: 0px 0px 10px gray;
+    opacity: .5;
+}
+
+.book-card header{
+    width: 100%;
+}
+
+.book-card .main {
+    padding: 10%;
+}
+
+.book-card .date {
+    color: #bca480;
+    font-size: .9rem;
+    margin-bottom: 5%;
+}
+
+.book-card .book-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 8%;
+}
+
+.book-content {
+    position: absolute;
+    top: 70%;
+    padding-right: 8%;
+}
+
+.learn-more {
+    position: absolute;
+    bottom: 5%;
+    left: -5%;
+    color: #bca480;
+    padding: 8% 12%;
+    box-shadow: 1px 1px 15px gray;
+    background-color: white;
+    transition: .5s;
+}
+.book-card:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.book-card:hover .learn-more{
+    background-color: #bca480;
+    color: white;
+}
+
+
+
+  
+
+/* 最新消息樣式結束 */
+
+/* 客房消息樣式開始 */
+.room {
+    padding: 8% 0 20% 0;
+    display: flex;
+    justify-content: flex-end;
+    /* border: 1px solid red; */
+    position: relative;
+}
+
+.room-right {
+    width: 50%;
+    /* border: 1px solid green; */
+}
+
+.room-content {
+    padding: 10%;
+}
+
+.room-content h3 {
+    font-size: 2rem;
+    margin-bottom: 5%;;
+}
+
+.room-content p {
+    font-size: 1.2rem;
+    line-height: 2rem;
+    margin-bottom: 5%;
+}
+
+.room-right-content {
+    height: 400px;
+    background-color: #f7f5f3;
+}
+
+.room-right-content a {
+    color: #af967d;
+    text-decoration: underline;
+}
+
+.room-left {
+    width: 50%;
+    position: absolute;
+    left: 0%;
+    transform: translateY(10%);
+    /* border: 1px solid green; */
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.room-left-content {
+    width: 110%;
+    height: 450px;
+    background-color: #af967d;
+    color: white;
+}
+
+.room-left-content a {
+    color: white;
+    text-decoration: underline;
+}
+
+.room-img {
+    width: 100%;
+    /* border: 1px solid blue; */
+    font-size: 0;
+    transition: 1s;
+    overflow: hidden;
+}
+
+.room-img:hover img{
+    opacity: .5;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.textP {
+    position: absolute;
+    bottom: -8%;
+    right: -80%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.textP .text-left {
+    font-size: 18rem;
+    font-weight: bold;
+}
+
+.textP .text-right {
+    padding-bottom: 12%;
+    margin-left: -5%;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+/* 客房消息樣式結束 */
+
+/* 美食消息樣式開始 */
+.food {
+    /* border: 1px solid red; */
+    position: relative;
+    width: 100%;
+    padding-bottom: 30%;
+}
+
+.food-content {
+    width: 100%;
+}
+
+.food-content.display-none {
+    display: none;
+}
+
+.food-img {
+    width: 70%;
+}
+
+.food-img > img {
+    object-fit: cover;
+    height: 100%;
+}
+
+.food-img-left {
+    height: 500px;
+    /* border: 5px solid red; */
+}
+
+
+.food-img-top {
+    width: 25%;
+    height: 200px;
+    /* border: 5px solid blue; */
+    position: absolute;
+    top: 25%;
+    right: 3%;
+    z-index: 1;
+}
+
+.food-img-right {
+    width: 45%;
+    height: 300px;
+    position: absolute;
+    right: 0;
+    bottom: 25%;
+}
+
+.food-text {
+    width: 50%;
+    padding: 3% 5%;
+    position: absolute;
+    top: calc(500px + 5%);
+}
+
+.food-text h2 {
+    font-size: 1.8rem;
+    margin-bottom: 5%;
+    font-weight: bold;
+}
+
+.food-text p {
+    font-size: 1.2rem;
+    line-height: 2rem;
+    margin-bottom: 5%;
+}
+
+.food-select-area {
+    cursor: pointer;
+    text-align: right;
+    position: absolute;
+    bottom: 15%;
+    right: 15%;
+}
+
+.food-select-btn {
+    width: 50px;
+    height: 5px;
+    background-color: #ccc;
+    display: inline-block;
+}
+/* 美食消息樣式結束 */
+
+/* 地圖資訊樣式開始 */
+
+.map {
+    /* border: 1px solid red; */
+    position: relative;
+    margin-top: 5%;
+}
+.map-area {
+    position: absolute;
+    top: 60px;
+    left: -30vw;
+    width: 180%;
+height: 480px;
+    margin: 0;
+    z-index: -9;
+}
+
+.book-area {
+    width: 35%;
+    height: 600px;
+    background-color: white;
+    /* border:1px solid red; */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px gray;
+    padding: 10% 5%;
+    justify-content: space-between;
+}
+
+.book-area h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #bca480;
+    /* margin-bottom: 10%; */
+}
+
+.book-area input {
+    border: none;
+    border-bottom: 1px solid #bca480;
+    /* color: white; */
+}
+
+.book-area button {
+    height: 15%;
+    background-color: #bca480;
+    border: none;
+    color: white;
+}
+/* 地圖資訊樣式結束 */
+
+/* footer樣式開始 */
+footer.footer {
+    margin: 10% 0; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.footer-icon-area {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5%;
+    margin-bottom: 5%;
+}
+
+.footer-icon-area i {
+    font-size: 20px;
+    margin-right: 10px;
+    color: gray;
+}
+
+footer.footer p {
+    line-height: 1.5rem;
+    font-size: .9rem;
+}
+
+footer.footer p:last-child {
+    color: #bebebe;
+}
+/* footer樣式結束 */
+
+@keyframes doRotate {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(45deg);
+    }
+}
+
+@keyframes doRotate01 {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(-90deg);
+    }
+}
+
+/* 美食消息動畫 */
+
+@keyframes flicker {
+    form {
+        opacity: 0;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: .3;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes flicker02 {
+    form {
+        opacity: 0;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: .1;
+        transform: scale(1.4);
+    }
+}
+
+/* gif檔走路 */
+@keyframes walkToRight {
+    0% {
+        left: 0;
+    }
+
+    50% {
+        left: 50%
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes walkToLeft {
+    0% {
+        right: 0;
+    }
+
+    50% {
+        right: 50%
+    }
+
+    100% {
+        right: 100%;
+    }
+}
+
+@media screen and (max-width: 1440px){
+    .menu li {
+        padding: 0 ;
+    }
+
+    nav p {
+        font-size: .5rem;
+    }
+
+    .first-view h2 {
+        font-size: 4rem;
+    }
+}
